@@ -12,10 +12,10 @@ const d = new Node("d");
 const e = new Node("e");
 const f = new Node("f");
 a.children = [b, c, d];
-b.children = [e, f];
+d.children = [e, f];
 //              a
 //          b   c   d
-//        e  f
+//                 e  f
 
 const dfs = HEAD => {
   const stack = [];
@@ -23,7 +23,7 @@ const dfs = HEAD => {
   let node = HEAD;
   while (stack.length) {
     node = stack.pop();
-    console.log(node.data);
+    console.log("dfs", node.data, stack.length);
     if (node.children) {
       node.children.forEach(child => {
         stack.push(child);
@@ -31,13 +31,14 @@ const dfs = HEAD => {
     }
   }
 };
+
 const bfs = HEAD => {
   const queue = [];
   queue.push(HEAD);
   let node = HEAD;
   while (queue.length) {
     node = queue.shift();
-    console.log(node.data);
+    console.log("bfs", node.data, queue.length);
     if (node.children) {
       node.children.forEach(child => {
         queue.push(child);
